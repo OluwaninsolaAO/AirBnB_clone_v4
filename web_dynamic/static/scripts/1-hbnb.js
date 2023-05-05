@@ -9,6 +9,8 @@ $(document).ready(function () {
     } else {
       delete aFilters[data.id];
     }
-    $('div.amenities h4').text(Object.values(aFilters).sort().join(', '));
+    let text = Object.values(aFilters).sort().join(', ');
+    text = text.length > 35 ? text.slice(0, 32) + '...' : text;
+    $('div.amenities h4').text(text);
   });
 });
