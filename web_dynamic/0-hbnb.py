@@ -13,7 +13,7 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 # app.jinja_env.trim_blocks = True
 # app.jinja_env.lstrip_blocks = True
-cache_id = str(uuid4())
+# cache_id = str(uuid4())
 
 
 @app.teardown_appcontext
@@ -37,6 +37,7 @@ def hbnb():
 
     places = storage.all(Place).values()
     places = sorted(places, key=lambda k: k.name)
+    cache_id = str(uuid4())  # avoids caching; moved here to make it 'dynamic'
 
     return render_template('0-hbnb.html',
                            states=st_ct,
